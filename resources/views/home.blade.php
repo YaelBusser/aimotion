@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-
+    <title>{{ config('app.name', 'Aimotion') }}</title>
+    <link rel="icon" href="{{asset('images/logo.jpg')}}" type="image/x-icon" />
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
