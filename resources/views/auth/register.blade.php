@@ -1,7 +1,6 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Nom')"/>
@@ -86,7 +85,6 @@
                 .then(response => response.json())
                 .then(data => {
                     // Récupération de la liste des villes
-
                     var villes = data.length;
                     var options = "";
                     // Boucle pour parcourir les villes et les ajouter à la liste déroulante
