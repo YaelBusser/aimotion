@@ -1,4 +1,12 @@
 <x-guest-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('S\'inscrire') }}
+        </h2>
+    </x-slot>
+    <div class="flex justify-center mb-6">
+        <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
+    </div>
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <!-- Name -->

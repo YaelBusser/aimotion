@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'publicView'])
-        ->name('register');
+        ->name('');
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -39,7 +39,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'privateView']);
+    Route::get('/home', [HomeController::class, 'privateView'])->name('home');
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
