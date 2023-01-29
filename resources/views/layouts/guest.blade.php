@@ -9,23 +9,21 @@
     <link rel="icon" href="{{asset('images/logo.jpg')}}" type="image/x-icon"/>
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
+    <link rel="stylesheet" href="{{ url('styles/guest.css') }}">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-gray-900 antialiased">
+<body>
 @include('layouts.navigation_guest')
 @if (isset($header))
-    <header class="bg-white dark:bg-gray-800 shadow">
+    <header class="shadow header">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             {{ $header }}
         </div>
     </header>
 @endif
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-        {{ $slot }}
-    </div>
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="margin-bottom: 100px; margin-top: 100px">
+    {{ $slot }}
 </div>
 </body>
 </html>

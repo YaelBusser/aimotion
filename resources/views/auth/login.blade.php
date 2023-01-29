@@ -4,13 +4,13 @@
             {{ __('Se connecter') }}
         </h2>
     </x-slot>
-    <div class="flex justify-center mb-6">
-        <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
-    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="form">
+        <div class="flex justify-center">
+            <x-application-logo class="w-30 rounded-full mb-6"/>
+        </div>
         @csrf
 
         <!-- Email Address -->
