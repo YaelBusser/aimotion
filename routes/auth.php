@@ -39,7 +39,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/homee', [HomeController::class, 'privateView'])->name('home');
+    Route::get('/home', [HomeController::class, 'privateView'])->name('home');
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
