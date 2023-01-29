@@ -1,7 +1,8 @@
-body{
+body {
     background-color: #343434;
 }
-.form{
+
+.form {
     background-color: #b1b2b5;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -10,15 +11,19 @@ body{
     border-radius: 10px 10px 10px 10px;
     width: 500px;
 }
-.form input, select option{
+
+.form input, select option {
     background-color: #d2d2d5;
 }
-select{
-    background: #d2d2d5!important;
+
+select {
+    background: #d2d2d5 !important;
 }
-.rounded-full{
+
+.rounded-full {
     border-radius: 100%;
 }
+
 .input-error {
     background-color: rgb(155, 11, 11);
     margin-top: 5px;
@@ -39,12 +44,164 @@ select{
     border-style: solid;
     border-color: transparent transparent rgb(155, 11, 11) transparent;
 }
-.navbar{
+
+.navbar {
     background-color: #232323;
-    border-bottom: 0.5px solid rgba(0,0,0,0.1);
     color: #cbcaca;
-}
-.header{
-    background-color: #232323;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
 }
 
+.navlinks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 15px;
+    font-size: 18px;
+}
+
+.header {
+    background-color: #232323;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.block-navlinks {
+    display: flex;
+    justify-content: center;
+
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.navlinks-textLogo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.navlinks-textLogo i {
+    max-width: 17px;
+}
+
+.navlinks-textLogo a {
+    display: flex;
+}
+
+.navlinks-sign {
+    display: flex;
+    position: absolute;
+    z-index: 8080;
+    right: 20px;
+    gap: 20px;
+    color: #cbcaca;
+}
+
+header h2 {
+    color: #cbcaca;
+}
+
+.aside-infos {
+    position: fixed;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+    color: black;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+.container-aside-infos {
+    width: 100%;
+}
+
+.block-aside-info {
+    width: 100%;
+}
+
+.block-aside-info h3 {
+    background-color: #cbcaca;
+    padding: 1rem;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+}
+.block-aside-info h3 i{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.block-aside-info:nth-child(1) h3 {
+    border-radius: 10px 10px 0 0;
+}
+
+.block-aside-info:nth-child(3) .block-aside-infos {
+    border-radius: 0 0 10px 10px;
+}
+
+.block-aside-infos {
+    background-color: #232323;
+    color: #cbcaca;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    display: block;
+}
+#dropdown-content-serveurs{
+    background-color: #232323;
+    color: #cbcaca;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+#dropdown-content-tournois{
+    background-color: #232323;
+    color: #cbcaca;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+#dropdown-content-reseaux{
+    background-color: #232323;
+    color: #cbcaca;
+    padding: 1rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+}
+#dropdown-content-reseaux i{
+    font-size: 20px;
+}
