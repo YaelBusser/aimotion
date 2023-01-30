@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,13 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function main(Request $request): View
+    {
+        return view('profile.profile', [
+            'user' => $request->user(),
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */
@@ -30,6 +38,25 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:16'],
+            'avatar' => ['image'],
+        ]);
+
+        // traitement de l'image
+        $user = auth()->user();
+        if ($request->avatar) {
+            if (file_exists($user->avatar)) {
+                unlink($user->avatar);
+            }
+            $file = $request->file('avatar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/avatars/', $filename);
+            $path_avatar = "uploads/avatars/" . $filename;
+            $user->avatar = $path_avatar;
         }
 
         $request->user()->save();

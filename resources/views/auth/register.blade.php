@@ -11,7 +11,7 @@
         @csrf
         <div class="flex gap-4">
             <div class="mt-4">
-                <x-input-label for="name" :value="__('Nom')"/>
+                <x-input-label for="name" :value="__('Pseudo')"/>
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
                               autofocus/>
                 <x-input-error :messages="$errors->get('name')" class="mt-2"/>

@@ -27,7 +27,7 @@
         </div>
     </header>
 @endif
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" data-aos="flip-left"
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" data-aos="fade-up"
      data-aos-duration="1000"
      style="margin-bottom: 100px; margin-top: 100px">
     {{ $slot }}

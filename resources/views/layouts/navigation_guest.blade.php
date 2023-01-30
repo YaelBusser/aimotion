@@ -3,7 +3,6 @@
     <div class="navbar" data-aos="fade-right" data-aos-duration="1000">
         <x-application-logo class="w-full"/>
         <!-- Navigation Links -->
-
         <div class="block-navlinks">
             <div class="navlinks">
                 <div class="navlinks-textLogo">
@@ -27,7 +26,6 @@
                 </svg>
             </button>
         </div>
-    </div>
     </div>
 
     <!-- Responsive Navigation Menu -->
