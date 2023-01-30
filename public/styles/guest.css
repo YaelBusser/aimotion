@@ -123,7 +123,7 @@ header h2 {
     top: 0;
     bottom: 0;
     color: black;
-    width: 400px;
+    width: 300px;
     display: flex;
     align-items: center;
     z-index: 1;
@@ -131,6 +131,8 @@ header h2 {
 
 .container-aside-infos {
     width: 100%;
+    box-shadow: 0 0 5px  #000000;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .block-aside-info {
@@ -143,11 +145,13 @@ header h2 {
     font-size: 20px;
     text-align: center;
     position: relative;
+    border-bottom: 1px solid #918f8f;
 }
 .block-aside-info h3 i{
     position: absolute;
     right: 20px;
     top: 20px;
+    cursor: pointer;
 }
 .block-aside-info:nth-child(1) h3 {
     border-radius: 10px 10px 0 0;
@@ -166,6 +170,7 @@ header h2 {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease-out;
 }
 
 .dropdown {
@@ -181,6 +186,7 @@ header h2 {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s ease-out;
 }
 #dropdown-content-tournois{
     background-color: #232323;
@@ -191,6 +197,7 @@ header h2 {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s ease-out;
 }
 #dropdown-content-reseaux{
     background-color: #232323;
@@ -201,7 +208,11 @@ header h2 {
     justify-content: center;
     align-items: center;
     border-radius: 0 0 10px 10px;
+    transition: all 0.5s ease-out;
 }
 #dropdown-content-reseaux i{
     font-size: 20px;
+}
+.border-radius-reseaux {
+    border-radius: 0 0 10px 10px;
 }

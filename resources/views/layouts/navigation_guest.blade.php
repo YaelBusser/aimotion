@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
-    <div class="navbar">
+    <div class="navbar" data-aos="fade-right" data-aos-duration="1000">
         <x-application-logo class="w-full"/>
         <!-- Navigation Links -->
 
