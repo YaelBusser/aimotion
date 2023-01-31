@@ -29,7 +29,6 @@
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
                 <div class="mt-6">
                     <x-input-label for="password" value="Password" class="sr-only"/>
-
                     <x-text-input
                         id="password"
                         name="password"
@@ -37,7 +36,6 @@
                         class="mt-1 block w-full"
                         placeholder="Mot de passe"
                     />
-
                     <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2"/>
                 </div>
 
