@@ -15,12 +15,10 @@ class FaceitController extends Controller
 
     public function handleProviderCallback()
     {
-        try {
-            $userFaceit = Socialite::driver('faceit')->user();
-        } catch (\Throwable $th){
-            throw $th;
-        }
+        $userFaceit = Socialite::driver('faceit')->user();
+        dd($userFaceit);
         $user = auth()->user();
+        dd($user);
         $user->pseudo_faceit = $userFaceit->getNickname();
         $user->save();
         return redirect()->to('/profile');
