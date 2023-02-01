@@ -30,5 +30,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'faceit' => [
+        'client_id' => 'c55bf509-4233-430b-8108-dad01d97b24b',
+        'client_secret' => 'ncsYezxnq8OaQuHSiuUp8Hxlb1sj7tQ3qvYf3sEs',
+        'redirect' => 'http://127.0.0.1:8000/profile',
+        'provider' => \App\Providers\FaceitProvider::class,
+    ],
 
 ];

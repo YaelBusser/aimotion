@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConnectedController;
 use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\FaceitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,9 @@ require __DIR__ . '/auth.php';
 
 Route::get("/home-disconnected", [ConnectedController::class, "publicView"]);
 Route::get("/home-connected", [ConnectedController::class, "privateView"]);
+
+// Faceit
+Route::prefix('faceit')->name('faceit.')->group( function (){
+    Route::get('login', [FaceitController::class, 'redirectToProvider'])->name('login');
+    Route::any('callback', [FaceitController::class, 'handleProviderCallback'])->name('callback');
+});

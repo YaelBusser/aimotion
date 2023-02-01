@@ -25,7 +25,14 @@
                 <div class="profile-infos">
                     <h2>Informations</h2>
                     <div class="body-profile-infos">
-                        <div id="onglet-csgo">csgo</div>
+                        <div class="onglet-csgo" id="onglet-csgo">
+                            <h3>CS:GO</h3>
+                            <a href="{{route('faceit.login')}}">
+                                <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png">
+                                <p>se connecter avec faceit</p>
+                            </a>
+
+                        </div>
                         <div id="onglet-rl">rocket league</div>
                     </div>
                 </div>
@@ -40,7 +47,7 @@
             if (window.location.href == "http://127.0.0.1:8000/profile#onglet-rl") {
                 window.location.replace(window.location.href.split("#onglet-rl")[0]);
             }
-            if(window.location.href == "http://127.0.0.1:8000/profile#onglet-csgo"){
+            if (window.location.href == "http://127.0.0.1:8000/profile#onglet-csgo") {
                 window.location.replace(window.location.href.split("#onglet-csgo")[0]);
             }
         });

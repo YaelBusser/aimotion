@@ -28,7 +28,9 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-
+    public function callback(){
+        return view("profile.callback");
+    }
     /**
      * Update the user's profile information.
      */

@@ -25,8 +25,8 @@ class User extends Authenticatable
         'ville',
         'codePostal',
         'rankMM',
-        'rankFaceit',
-        'avatar'
+        'avatar',
+        'pseudo_faceit'
     ];
     /**
      * The attributes that should be hidden for serialization.
