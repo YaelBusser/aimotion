@@ -31,9 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'faceit' => [
-        'client_id' => 'c4514790-7890-4be3-a0da-e55a2342caf9',
-        'client_secret' => 'DuxGelPsi0vpbyIPvx8XNarVa3AR5dAVwFcOaD7S',
-        'redirect' => 'http://127.0.0.1:8000/profile/callback',
+        'client_id' => '2a6aa091-6c73-436d-af77-6152c27b1197',
+        'client_secret' => 'faGkE6Ftb3JtOCO3lQjy10eYFH6uhR8kls0o35Op',
+        'redirect' => 'http://127.0.0.1:8000/faceit/callback',
         'provider' => \App\Providers\FaceitProvider::class,
     ],
 
