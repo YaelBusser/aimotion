@@ -39,10 +39,12 @@
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
                                             <p>changer de compte</p>
                                         </a>
-                                        <p>{{$errorNotGameCsgo}}</p>
-                                        <img src="{{$faceit->avatar}}">
-                                        <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
-                                           target="_blank">{{$faceit->nickname}}</a>
+                                        <p class="errorFaceit">{{$errorNotGameCsgo}}</p>
+                                        <div class="faceit-infos">
+                                            <img src="{{$faceit->avatar}}" class="avatarFaceit">
+                                            <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                               target="_blank">{{$faceit->nickname}}</a>
+                                        </div>
                                     @else
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
@@ -50,20 +52,54 @@
                                         </a>
                                     @endif
                                 @else
-                                    <a href="{{route('faceit.login')}}" class="faceitLogIn">
-                                        <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
-                                        <p>changer de compte</p>
-                                    </a>
-                                    <img src="{{$faceit->avatar}}" class="avatarFaceit">
-                                    <a href="{{$faceit->faceit_url}}"
-                                       target="_blank">{{$faceit->nickname}}</a>
-                                    <img src="{{$lvlImg}}">
-                                    <p>elo : {{$faceit->games->csgo->faceit_elo}}</p>
-                                    <p>K/D
-                                        : <?= round($faceitStats->lifetime->{'K/D Ratio'} / $faceitStats->lifetime->Matches, 2); ?></p>
-                                    <p>% HS
-                                        : <?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?></p>
-                                    <p>% WR : <?= $faceitStats->lifetime->{'Win Rate %'}; ?></p>
+                                    <div class="faceit-infos">
+                                        <img src="{{$faceit->avatar}}" class="avatarFaceit">
+                                        <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                           target="_blank">{{$faceit->nickname}}</a>
+                                        <div class="faceit-infos-stats">
+                                            <div class="faceit-items-infos-stats">
+                                                <div class="label-stats-faceit">
+                                                    <p>Elo</p>
+                                                </div>
+                                                <div class="value-stats-faceit">
+                                                    <img src="{{$lvlImg}}" class="imgLvlImg">
+                                                    <p>{{$faceit->games->csgo->faceit_elo}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="faceit-items-infos-stats">
+                                                <div class="label-stats-faceit">
+                                                    <p>Matches</p>
+                                                </div>
+                                                <div class="value-stats-faceit">
+                                                    <p>{{$faceitStats->lifetime->Matches}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="faceit-items-infos-stats">
+                                                <div class="label-stats-faceit">
+                                                    <p>WR</p>
+                                                </div>
+                                                <div class="value-stats-faceit">
+                                                    <p><?= $faceitStats->lifetime->{'Win Rate %'}; ?>%</p>
+                                                </div>
+                                            </div>
+                                            <div class="faceit-items-infos-stats">
+                                                <div class="label-stats-faceit">
+                                                    <p>K/D</p>
+                                                </div>
+                                                <div class="value-stats-faceit">
+                                                    <p><?= round($faceitStats->lifetime->{'K/D Ratio'} / $faceitStats->lifetime->Matches, 2); ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="faceit-items-infos-stats">
+                                                <div class="label-stats-faceit">
+                                                    <p>HS</p>
+                                                </div>
+                                                <div class="value-stats-faceit">
+                                                    <p><?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?>%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -87,7 +123,7 @@
             }
         });
         document.getElementById("csgo").addEventListener("click", function () {
-            document.querySelector("#csgo").style.backgroundColor = "#717171";
+            document.querySelector("#csgo").style.backgroundColor = "#3b3b3b";
             document.querySelector("#rocketleague").style.backgroundColor = "#232323";
             document.querySelector("#onglet-csgo").style.display = "block";
             document.querySelector("#onglet-rl").style.display = "none";
@@ -95,7 +131,7 @@
 
         document.getElementById("rocketleague").addEventListener("click", function () {
             document.querySelector("#csgo").style.backgroundColor = "#232323";
-            document.querySelector("#rocketleague").style.backgroundColor = "#717171";
+            document.querySelector("#rocketleague").style.backgroundColor = "#3b3b3b";
             document.querySelector("#onglet-csgo").style.display = "none";
             document.querySelector("#onglet-rl").style.display = "block";
         });

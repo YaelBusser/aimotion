@@ -241,7 +241,6 @@ header h2 {
     color: #cbcaca;
     border-radius: 10px 10px 10px 10px;
 }
-
 .profile-header {
     display: flex;
     flex-direction: column;
@@ -388,7 +387,7 @@ header h2 {
 
 .block-profile-infos nav a:nth-child(1) {
     border-radius: 10px 0 0 0;
-    background-color: #717171;
+    background-color: #3b3b3b;
 }
 
 .block-profile-infos nav a:nth-child(2) {
@@ -480,7 +479,7 @@ header h2 {
 }
 
 .body-profile-csgo-info-faceit {
-    width: 40%;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -490,9 +489,67 @@ header h2 {
 }
 
 .banner-faceit {
-
+    border-radius: 10px 10px 10px 10px;
 }
 .avatarFaceit{
     width: 150px;
     border-radius: 50%;
+}
+.faceit-items-infos-stats{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 10px 10px 10px 10px;
+}
+.faceit-items-infos-stats div{
+
+}
+.faceit-items-infos-stats img{
+    width: 25px;
+    object-fit: cover;
+}
+.faceit-infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.faceit-infos-stats{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.label-stats-faceit{
+    display: flex;
+}
+.value-stats-faceit{
+    display: flex;
+    gap: 5px;
+}
+.faceit-items-infos-stats:nth-child(odd){
+    background-color: #232323;
+}
+.faceit-items-infos-stats:nth-child(even){
+    background-color: #3b3b3b;
+}
+.errorFaceit {
+    background-color: rgb(155, 11, 11);
+    padding: 0.5rem;
+    color: #dedddd;
+    border-radius: 10px 10px 10px 10px;
+    position: relative;
+    text-align: justify;
+}
+
+.errorFaceit:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgb(155, 11, 11) transparent;
 }

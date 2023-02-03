@@ -92,7 +92,7 @@ class ProfileController extends Controller
                     $lvlImg = "";
                 }
             } else {
-                $errorNotGameCsgo = "Vous n'avez pas de compte csgo associé à votre faceit ! Veuillez changer de compte ou ajoutez le jeu CS:GO à votre compte faceit.";
+                $errorNotGameCsgo = "Vous n'avez pas de compte csgo associé à votre compte faceit ! Veuillez changer de compte ou ajoutez le jeu CS:GO à votre compte faceit.";
             }
         } else {
             $faceitData = "";

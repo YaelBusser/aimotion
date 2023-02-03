@@ -29,7 +29,7 @@
 @endif
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" data-aos="fade-up"
      data-aos-duration="1000"
-     style="margin-bottom: 100px; margin-top: 100px">
+     style="margin-bottom: 200px; margin-top: 200px">
     {{ $slot }}
 </div>
 
