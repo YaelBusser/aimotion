@@ -26,11 +26,11 @@
                     <h2>Informations</h2>
                     <div class="onglet-csgo" id="onglet-csgo">
                         <h3>CS:GO</h3>
-                        <div class="flex">
-                            <div>
+                        <div class="body-profile-csgo">
+                            <div class="body-profile-csgo-info-g">
                                 <p>Informations générales</p>
                             </div>
-                            <div>
+                            <div class="body-profile-csgo-info-faceit">
                                 @if(empty($faceit) || !isset($faceit->games->csgo))
                                     @if (!isset($faceit->games->csgo) AND !empty($user->pseudo_faceit))
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
@@ -40,14 +40,13 @@
                                         <p>{{$errorNotGameCsgo}}</p>
                                         <img src="{{$faceit->avatar}}">
                                         <p>pseudonyme: <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
-                                                                  target="_blank">{{$faceit->nickname}}</a></p>
+                                                          target="_blank">{{$faceit->nickname}}</a></p>
                                     @else
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
                                             <p>se connecter avec faceit</p>
                                         </a>
                                     @endif
-
                                 @else
                                     <a href="{{route('faceit.login')}}" class="faceitLogin">
                                         <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">

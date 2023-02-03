@@ -461,3 +461,14 @@ header h2 {
 .onglet-rl{
     display: none;
 }
+.body-profile-csgo{
+    border: 1px solid blue;
+    display: flex;
+    justify-content: space-between;
+}
+.body-profile-csgo-info-g{
+    border: 1px solid red;
+}
+.body-profile-csgo-info-faceit{
+    border: 1px solid red;
+}
