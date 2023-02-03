@@ -24,17 +24,50 @@
                 </nav>
                 <div class="profile-infos">
                     <h2>Informations</h2>
-                    <div class="body-profile-infos">
-                        <div class="onglet-csgo" id="onglet-csgo">
-                            <h3>CS:GO</h3>
-                            <a href="{{route('faceit.login')}}">
-                                <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png">
-                                <p>se connecter avec faceit</p>
-                            </a>
+                    <div class="onglet-csgo" id="onglet-csgo">
+                        <h3>CS:GO</h3>
+                        <div class="flex">
+                            <div>
+                                <p>Informations générales</p>
+                            </div>
+                            <div>
+                                @if(empty($faceit) || !isset($faceit->games->csgo))
+                                    @if (!isset($faceit->games->csgo) AND !empty($user->pseudo_faceit))
+                                        <a href="{{route('faceit.login')}}" class="faceitLogIn">
+                                            <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
+                                            <p>se connecter avec faceit</p>
+                                        </a>
+                                        <p>{{$errorNotGameCsgo}}</p>
+                                        <img src="{{$faceit->avatar}}">
+                                        <p>pseudonyme: <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                                                  target="_blank">{{$faceit->nickname}}</a></p>
+                                    @else
+                                        <a href="{{route('faceit.login')}}" class="faceitLogIn">
+                                            <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
+                                            <p>se connecter avec faceit</p>
+                                        </a>
+                                    @endif
 
+                                @else
+                                    <a href="{{route('faceit.login')}}" class="faceitLogin">
+                                        <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
+                                        <p>changer de compte</p>
+                                    </a>
+                                    <img src="{{$faceit->avatar}}">
+                                    <p>pseudonyme + link : <a href="{{$faceit->faceit_url}}"
+                                                              target="_blank">{{$faceit->nickname}}</a></p>
+                                    <img src="{{$lvlImg}}">
+                                    <p>elo : {{$faceit->games->csgo->faceit_elo}}</p>
+                                    <p>K/D
+                                        : <?= round($faceitStats->lifetime->{'K/D Ratio'} / $faceitStats->lifetime->Matches, 2); ?></p>
+                                    <p>% HS
+                                        : <?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?></p>
+                                    <p>% WR : <?= $faceitStats->lifetime->{'Win Rate %'}; ?></p>
+                                @endif
+                            </div>
                         </div>
-                        <div id="onglet-rl">rocket league</div>
                     </div>
+                    <div class="onglet-rl" id="onglet-rl">rocket league</div>
                 </div>
             </div>
             <div class="profile-histo">
@@ -43,6 +76,7 @@
         </div>
     </div>
     <script>
+
         window.addEventListener("load", function () {
             if (window.location.href == "http://127.0.0.1:8000/profile#onglet-rl") {
                 window.location.replace(window.location.href.split("#onglet-rl")[0]);
@@ -54,11 +88,15 @@
         document.getElementById("csgo").addEventListener("click", function () {
             document.querySelector("#csgo").style.backgroundColor = "#717171";
             document.querySelector("#rocketleague").style.backgroundColor = "#232323";
+            document.querySelector("#onglet-csgo").style.display = "block";
+            document.querySelector("#onglet-rl").style.display = "none";
         });
 
         document.getElementById("rocketleague").addEventListener("click", function () {
             document.querySelector("#csgo").style.backgroundColor = "#232323";
             document.querySelector("#rocketleague").style.backgroundColor = "#717171";
+            document.querySelector("#onglet-csgo").style.display = "none";
+            document.querySelector("#onglet-rl").style.display = "block";
         });
     </script>
 </x-app-layout>

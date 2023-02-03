@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('age');
             $table->string('ville');
             $table->integer('rankMM');
-            $table->integer('rankFaceit');
         });
     }
 

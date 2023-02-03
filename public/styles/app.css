@@ -353,7 +353,6 @@ header h2 {
 .block-profile-info-histo {
     display: flex;
     gap: 10px;
-    width: 1000px;
 }
 .block-profile-info-histo h2{
     font-size: 25px;
@@ -365,6 +364,7 @@ header h2 {
     display: flex;
     flex-direction: column;
     gap: 3px;
+    position: relative;
 }
 
 .block-profile-infos nav {
@@ -394,14 +394,11 @@ header h2 {
 }
 
 .profile-infos {
-    width: 100%;
-    height: 300px;
     background-color: #232323;
     margin-top: 0;
     padding: 1rem;
     color: #cbcaca;
     border-radius: 0 10px 10px 10px;
-    position: relative;
 }
 
 .profile-histo {
@@ -416,16 +413,14 @@ header h2 {
 
 [id^=onglet]:first-child {
     z-index: 1;
-    min-height: 150px;
 }
 
 [id^=onglet]:target {
-    z-index: 2;
-    min-height: 150px;
+
 }
 
 .body-profile-infos {
-    position: relative;
+
 }
 .body-profile-infos div{
     background-color: #232323;
@@ -435,10 +430,11 @@ header h2 {
     position: absolute;
     width: 100%;
 }
-#onglet-csgo{
+.block-signIn-faceit{
     width: 100%;
+    height: 500px;
 }
-.onglet-csgo a{
+.faceitLogIn{
     background-color: #FF5500;
     padding: 5px;
     width: 250px;
@@ -449,7 +445,7 @@ header h2 {
     color: white;
     gap: 10px;
 }
-.onglet-csgo a img{
+.imgFaceitLogin{
     width: 25px;
 }
 #csgo {
@@ -458,4 +454,10 @@ header h2 {
 
 #rocketleague {
     transition: all 0.3s ease-in-out;
+}
+.onglet-csgo{
+    display: block;
+}
+.onglet-rl{
+    display: none;
 }
