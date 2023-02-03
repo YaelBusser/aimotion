@@ -31,16 +31,18 @@
                                 <p>Informations générales</p>
                             </div>
                             <div class="body-profile-csgo-info-faceit">
+                                <img class="banner-faceit"
+                                     src="https://i.ibb.co/hYtffk7/Capture-d-cran-2023-02-03-161339.png">
                                 @if(empty($faceit) || !isset($faceit->games->csgo))
                                     @if (!isset($faceit->games->csgo) AND !empty($user->pseudo_faceit))
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
-                                            <p>se connecter avec faceit</p>
+                                            <p>changer de compte</p>
                                         </a>
                                         <p>{{$errorNotGameCsgo}}</p>
                                         <img src="{{$faceit->avatar}}">
-                                        <p>pseudonyme: <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
-                                                          target="_blank">{{$faceit->nickname}}</a></p>
+                                        <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                           target="_blank">{{$faceit->nickname}}</a>
                                     @else
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
@@ -48,13 +50,13 @@
                                         </a>
                                     @endif
                                 @else
-                                    <a href="{{route('faceit.login')}}" class="faceitLogin">
+                                    <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                         <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
                                         <p>changer de compte</p>
                                     </a>
-                                    <img src="{{$faceit->avatar}}">
-                                    <p>pseudonyme + link : <a href="{{$faceit->faceit_url}}"
-                                                              target="_blank">{{$faceit->nickname}}</a></p>
+                                    <img src="{{$faceit->avatar}}" class="avatarFaceit">
+                                    <a href="{{$faceit->faceit_url}}"
+                                       target="_blank">{{$faceit->nickname}}</a>
                                     <img src="{{$lvlImg}}">
                                     <p>elo : {{$faceit->games->csgo->faceit_elo}}</p>
                                     <p>K/D
