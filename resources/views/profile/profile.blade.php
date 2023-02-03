@@ -23,12 +23,12 @@
                     <a href="#onglet-rl" id="rocketleague"><p>rocket league</p></a>
                 </nav>
                 <div class="profile-infos">
-                    <h2>Informations</h2>
+                    <h2>Informations CS:GO</h2>
                     <div class="onglet-csgo" id="onglet-csgo">
-                        <h3>CS:GO</h3>
                         <div class="body-profile-csgo">
                             <div class="body-profile-csgo-info-g">
-                                <p>Informations générales</p>
+                                <h3>Informations générales</h3>
+                                <p>Heures de jeu :</p>
                             </div>
                             <div class="body-profile-csgo-info-faceit">
                                 <img class="banner-faceit"
@@ -48,7 +48,7 @@
                                     @else
                                         <a href="{{route('faceit.login')}}" class="faceitLogIn">
                                             <img src="https://i.postimg.cc/9fNmYjQv/unnamed.png" class="imgFaceitLogin">
-                                            <p>se connecter avec faceit</p>
+                                            <p>se connecter</p>
                                         </a>
                                     @endif
                                 @else
@@ -59,7 +59,7 @@
                                         <div class="faceit-infos-stats">
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p>Elo</p>
+                                                    <p><i class="fa-solid fa-ranking-star"></i> Elo</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
                                                     <img src="{{$lvlImg}}" class="imgLvlImg">
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p>Matches</p>
+                                                    <p><i class="fa-solid fa-gamepad"></i> Matches</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
                                                     <p>{{$faceitStats->lifetime->Matches}}</p>
@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p>WR</p>
+                                                    <p><i class="fa-solid fa-trophy"></i> WR</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
                                                     <p><?= $faceitStats->lifetime->{'Win Rate %'}; ?>%</p>
@@ -84,7 +84,7 @@
                                             </div>
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p>K/D</p>
+                                                    <p><i class="fa-solid fa-gun"></i> K/D</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
                                                     <p><?= round($faceitStats->lifetime->{'K/D Ratio'} / $faceitStats->lifetime->Matches, 2); ?></p>
@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p>HS</p>
+                                                    <p><i class="fa-solid fa-head-side-virus"></i> HS</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
                                                     <p><?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?>%</p>
@@ -123,15 +123,15 @@
             }
         });
         document.getElementById("csgo").addEventListener("click", function () {
-            document.querySelector("#csgo").style.backgroundColor = "#3b3b3b";
-            document.querySelector("#rocketleague").style.backgroundColor = "#232323";
+            document.querySelector("#csgo").style.backgroundColor = "#232323";
+            document.querySelector("#rocketleague").style.backgroundColor = "#3b3b3b";
             document.querySelector("#onglet-csgo").style.display = "block";
             document.querySelector("#onglet-rl").style.display = "none";
         });
 
         document.getElementById("rocketleague").addEventListener("click", function () {
-            document.querySelector("#csgo").style.backgroundColor = "#232323";
-            document.querySelector("#rocketleague").style.backgroundColor = "#3b3b3b";
+            document.querySelector("#csgo").style.backgroundColor = "#3b3b3b";
+            document.querySelector("#rocketleague").style.backgroundColor = "#232323";
             document.querySelector("#onglet-csgo").style.display = "none";
             document.querySelector("#onglet-rl").style.display = "block";
         });
