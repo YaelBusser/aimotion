@@ -491,6 +491,7 @@ header h2 {
 
 .body-profile-csgo-info-g {
     width: 600px;
+    max-width: 600px;
     background-color: #1c1b1b;
     padding: 1rem;
     border-radius: 10px 10px 10px 10px;
@@ -502,7 +503,7 @@ header h2 {
 }
 
 .body-profile-csgo-info-faceit {
-    width: 400px;
+    width: 350px;
     max-width: 350px;
     display: flex;
     flex-direction: column;
