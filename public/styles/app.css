@@ -635,6 +635,19 @@ header h2 {
     border-radius: 10px 10px 10px 10px;
 }
 
+.item-formEditInfoG select {
+    appearance: none;
+    color: #918f8f;
+    background-color: #232323!important;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+}
+.item-formEditInfoG select option {
+    appearance: none;
+    color: #918f8f;
+    background-color: #232323;
+}
+
 .checkbox-formEditInfoG {
     display: flex;
     flex-wrap: wrap;
@@ -642,7 +655,7 @@ header h2 {
 }
 
 .checkbox-formEditInfoG img {
-    width: 100px;
+    width: 50px;
 }
 
 .checkbox-formEditInfoG input[type="checkbox"] {
@@ -657,6 +670,7 @@ header h2 {
 .checkbox-formEditInfoG input[type="checkbox"]:focus {
     box-shadow: none;
 }
+
 .checkbox-formEditInfoG input[type="checkbox"]:active {
     border: none;
 }
@@ -665,5 +679,12 @@ header h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+.logo-map-preferee{
+    width: 50px;
+}
+.block-logo-map-preferee{
+    display: flex;
     gap: 10px;
 }

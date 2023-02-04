@@ -46,3 +46,8 @@ Route::prefix('faceit')->name('faceit.')->group( function (){
     Route::get('login', [FaceitController::class, 'redirectToProvider'])->name('login');
     Route::any('callback', [FaceitController::class, 'handleProviderCallback'])->name('callback');
 });
+
+// Edit Infos G CS:GO
+Route::middleware('auth')->group(function () {
+    Route::post('/profile/infoG/csgo', [ProfileController::class, 'editInfoCsgo'])->name('profile.infog.csgo');
+});

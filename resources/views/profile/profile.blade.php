@@ -32,11 +32,28 @@
                                 </div>
                                 <h3>Informations générales</h3>
                                 <div id="infos-g">
-                                    <p>Heures de jeu :</p>
+                                    <div class="item-formEditInfoG">
+                                        <p>Maps les plus jouées :</p>
+                                        <div class="block-logo-map-preferee">
+                                            @foreach($mapsPreferees as $mapsPreferee)
+                                                <img src="{{$mapsPreferee->logo}}" class="logo-map-preferee">
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-                                <form method="post" id="formContainer" class="formEditInfoG">
+                                <form method="post" action="/profile/infoG/csgo" id="formContainer"
+                                      class="formEditInfoG">
+                                    @csrf
                                     <div class="body-formEditInfoG">
                                         <div class="block-body-formEditInfoG">
+                                            <div class="item-formEditInfoG">
+                                                <label for="styledejeu">Votre rank MM :</label>
+                                                <select name="rankmm">
+                                                    @foreach ($rankmm as $rank)
+                                                        <option value="{{ $rank->label }}">{{$rank->label }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             <div class="item-formEditInfoG">
                                                 <label for="styledejeu">Votre style de jeu :</label>
                                                 <div class="checkbox-formEditInfoG">
@@ -75,14 +92,30 @@
                                                 </div>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="maps">Vos maps préférées :</label>
+                                                <label for="maps">Vos maps les plus jouées :</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($maps as $map)
                                                         <div class="checkbox-formEditInfoG-item">
                                                             <input type="checkbox" id="{{ $map->label }}"
-                                                                   name="maps[]" value="{{ $map->label }}">
+                                                                   name="mapsPlusJouees[]" value="{{ $map->label }}"
+                                                                   @if(in_array($map->label, $labelMapsPreferees)) checked @endif>
                                                             <div class="flex gap-4">
                                                                 <label for="{{ $map->label }}"><img
+                                                                        src="{{$map->logo}}"></label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="item-formEditInfoG">
+                                                <label for="maps">Vos maps les moins jouées :</label>
+                                                <div class="checkbox-formEditInfoG">
+                                                    @foreach ($maps as $map)
+                                                        <div class="checkbox-formEditInfoG-item">
+                                                            <input type="checkbox" id="moins{{ $map->label }}"
+                                                                   name="mapsMoinsJouees[]" value="{{ $map->label }}">
+                                                            <div class="flex gap-4">
+                                                                <label for="moins{{ $map->label }}"><img
                                                                         src="{{$map->logo}}"></label>
                                                             </div>
                                                         </div>
@@ -106,7 +139,7 @@
                                         <p class="errorFaceit">{{$errorNotGameCsgo}}</p>
                                         <div class="faceit-infos">
                                             <img src="{{$faceit->avatar}}" class="avatarFaceit">
-                                            <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                            <a href="https://www.faceit.com/{{$faceit->settings->language}}/players/{{$faceit->nickname}}"
                                                target="_blank">{{$faceit->nickname}}</a>
                                         </div>
                                     @else
@@ -118,7 +151,7 @@
                                 @else
                                     <div class="faceit-infos">
                                         <img src="{{$faceit->avatar}}" class="avatarFaceit">
-                                        <a href="https://www.faceit.com/fr/players/{{$faceit->nickname}}"
+                                        <a href="https://www.faceit.com/{{$faceit->settings->language}}/players/{{$faceit->nickname}}"
                                            target="_blank">{{$faceit->nickname}}</a>
                                         <div class="faceit-infos-stats">
                                             <div class="faceit-items-infos-stats">

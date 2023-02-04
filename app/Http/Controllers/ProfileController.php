@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\csgo_infos_g_maps_plus_jouees;
+use App\Models\csgo_maps;
+use App\Models\CsgoInfoGMapsPlusJouees;
 use App\Models\csgoRoleT;
 use App\Models\faceit_lvlModel;
 use App\Models\User;
@@ -23,6 +26,28 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
+    }
+
+    public function editInfoCsgo(Request $request)
+    {
+        // Récupération des données du formulaire
+        $data = $request->all();
+        $userId = Auth::user()->id;
+        if (array_key_exists('mapsPlusJouees', $data)) {
+            $mapsPlusJouees = $data['mapsPlusJouees'];
+            DB::table('csgo_infos_g_maps_plus_jouees')->where('id_user', $userId)->delete();
+            foreach ($mapsPlusJouees as $map) {
+                $mapId = DB::table('csgo_maps')->where('label', $map)->first();
+                csgo_infos_g_maps_plus_jouees::create([
+                    'id_user' => $userId,
+                    'id_map' => $mapId->id
+                ]);
+            }
+        } else {
+            DB::table('csgo_infos_g_maps_plus_jouees')->where('id_user', $userId)->delete();
+        }
+        // Redirection vers la page de profil ou une autre page
+        return Redirect::route('profile.profile');
     }
 
     public function main(Request $request): View
@@ -106,6 +131,18 @@ class ProfileController extends Controller
         $roleFavCt = $roleFavCt->index();
         $maps = new CsgoMapsController();
         $maps = $maps->index();
+        $rankmm = new CsgoRankMmController();
+        $rankmm = $rankmm->index();
+        $mapsPreferees = new CsgoMapsPlusJoueesController();
+        $mapsPreferees = $mapsPreferees->index($user->id);
+        $mapsController = new CsgoMapsController();
+        $mapsUserFav = [];
+        $labelMapsUserFav = [];
+        foreach ($mapsPreferees as $mapPreferee) {
+            $valueMap = $mapsController->search($mapPreferee->id_map);
+            $mapsUserFav[] = $valueMap;
+            $labelMapsUserFav[] = $valueMap->label;
+        }
         return view('profile.profile', [
             'user' => $user,
             "faceit" => $faceitData,
@@ -116,6 +153,9 @@ class ProfileController extends Controller
             'roleFavT' => $roleFavT,
             'roleFavCt' => $roleFavCt,
             'maps' => $maps,
+            'rankmm' => $rankmm,
+            'mapsPreferees' => $mapsUserFav,
+            'labelMapsPreferees' => $labelMapsUserFav,
         ]);
     }
 
