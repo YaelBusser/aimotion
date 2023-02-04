@@ -46,7 +46,12 @@ class ProfileController extends Controller
         } else {
             DB::table('csgo_infos_g_maps_plus_jouees')->where('id_user', $userId)->delete();
         }
-        // Redirection vers la page de profil ou une autre page
+        if (array_key_exists('rankmm', $data)) {
+            $rankMm = $data['rankmm'];
+            $ranksMm = DB::table('csgo_rankmm')->where('label', $rankMm)->first();
+            DB::table('users')->where('id', $userId)->update(['rankMM' => $ranksMm->id_csgo_rankmm]);
+        }
+        // Redirection vers la page de profil
         return Redirect::route('profile.profile');
     }
 
@@ -133,16 +138,22 @@ class ProfileController extends Controller
         $maps = $maps->index();
         $rankmm = new CsgoRankMmController();
         $rankmm = $rankmm->index();
+
         $mapsPreferees = new CsgoMapsPlusJoueesController();
         $mapsPreferees = $mapsPreferees->index($user->id);
         $mapsController = new CsgoMapsController();
         $mapsUserFav = [];
         $labelMapsUserFav = [];
+
         foreach ($mapsPreferees as $mapPreferee) {
             $valueMap = $mapsController->search($mapPreferee->id_map);
             $mapsUserFav[] = $valueMap;
             $labelMapsUserFav[] = $valueMap->label;
         }
+
+        $rankmmUser = new CsgoRankMmController();
+        $rankmmUser = $rankmmUser->fetchById($user->rankMM);
+
         return view('profile.profile', [
             'user' => $user,
             "faceit" => $faceitData,
@@ -156,6 +167,7 @@ class ProfileController extends Controller
             'rankmm' => $rankmm,
             'mapsPreferees' => $mapsUserFav,
             'labelMapsPreferees' => $labelMapsUserFav,
+            'rankMmUser' => $rankmmUser,
         ]);
     }
 

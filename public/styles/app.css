@@ -684,7 +684,15 @@ header h2 {
 .logo-map-preferee{
     width: 50px;
 }
+.logo-rankmm{
+    width: 100px;
+}
 .block-logo-map-preferee{
     display: flex;
+    gap: 10px;
+}
+.block-infos-g{
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }

@@ -13,4 +13,9 @@ class CsgoRankMmController extends Controller
         $csgo_rankmm = csgo_rankmm::all();
         return $csgo_rankmm;
     }
+    public function fetchById($id_csgo_rankmm)
+    {
+        $rankMm = csgo_rankmm::where('id_csgo_rankmm', $id_csgo_rankmm)->first();
+        return $rankMm;
+    }
 }

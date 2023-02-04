@@ -32,12 +32,20 @@
                                 </div>
                                 <h3>Informations générales</h3>
                                 <div id="infos-g">
-                                    <div class="item-formEditInfoG">
-                                        <p>Maps les plus jouées :</p>
-                                        <div class="block-logo-map-preferee">
-                                            @foreach($mapsPreferees as $mapsPreferee)
-                                                <img src="{{$mapsPreferee->logo}}" class="logo-map-preferee">
-                                            @endforeach
+                                    <div class="block-infos-g">
+                                        <div class="item-formEditInfoG">
+                                            <p>Rank MM</p>
+                                            <div class="block-logo-map-preferee">
+                                                <img src="{{$rankMmUser->logo}}" class="logo-rankmm">
+                                            </div>
+                                        </div>
+                                        <div class="item-formEditInfoG">
+                                            <p>Maps les plus jouées</p>
+                                            <div class="block-logo-map-preferee">
+                                                @foreach($mapsPreferees as $mapsPreferee)
+                                                    <img src="{{$mapsPreferee->logo}}" class="logo-map-preferee">
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -47,15 +55,18 @@
                                     <div class="body-formEditInfoG">
                                         <div class="block-body-formEditInfoG">
                                             <div class="item-formEditInfoG">
-                                                <label for="styledejeu">Votre rank MM :</label>
+                                                <label for="styledejeu">Votre rank MM</label>
                                                 <select name="rankmm">
                                                     @foreach ($rankmm as $rank)
-                                                        <option value="{{ $rank->label }}">{{$rank->label }}</option>
+                                                        <option
+                                                            value="{{ $rank->label }}" {{ $rank->label == $rankMmUser->label ? 'selected' : '' }}>
+                                                            {{$rank->label }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="styledejeu">Votre style de jeu :</label>
+                                                <label for="styledejeu">Votre style de jeu</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($styleDeJeu as $style)
                                                         <div class="checkbox-formEditInfoG-item">
@@ -67,7 +78,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="rolect">Vos rôles préférés en CT :</label>
+                                                <label for="rolect">Vos rôles préférés en CT</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($roleFavCt as $roleCt)
                                                         <div class="checkbox-formEditInfoG-item">
@@ -80,7 +91,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="rolet">Vos rôles préférés en T :</label>
+                                                <label for="rolet">Vos rôles préférés en T</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($roleFavT as $roleT)
                                                         <div class="checkbox-formEditInfoG-item">
@@ -92,7 +103,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="maps">Vos maps les plus jouées :</label>
+                                                <label for="maps">Vos maps les plus jouées</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($maps as $map)
                                                         <div class="checkbox-formEditInfoG-item">
@@ -108,7 +119,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-formEditInfoG">
-                                                <label for="maps">Vos maps les moins jouées :</label>
+                                                <label for="maps">Vos maps les moins jouées</label>
                                                 <div class="checkbox-formEditInfoG">
                                                     @foreach ($maps as $map)
                                                         <div class="checkbox-formEditInfoG-item">
