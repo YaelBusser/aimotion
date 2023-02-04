@@ -31,6 +31,7 @@
                                     <i id="toggleFormIcon" class="fa-solid fa-pen-to-square icon-edit-info-g"></i>
                                 </div>
                                 <h3>Informations générales</h3>
+                                <p>Ces informations sont facultatives, elles sont utiles pour remplir automatiquement les formulaires de recrutement.</p>
                                 <div id="infos-g">
                                     <div class="block-infos-g">
                                         <div class="item-formEditInfoG">
