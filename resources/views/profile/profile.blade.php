@@ -23,12 +23,76 @@
                     <a href="#onglet-rl" id="rocketleague"><p>rocket league</p></a>
                 </nav>
                 <div class="profile-infos">
-                    <h2>Informations CS:GO</h2>
                     <div class="onglet-csgo" id="onglet-csgo">
+                        <h2>Informations CS:GO</h2>
                         <div class="body-profile-csgo">
                             <div class="body-profile-csgo-info-g">
+                                <div class="block-icon-edit-info-g">
+                                    <i id="toggleFormIcon" class="fa-solid fa-pen-to-square icon-edit-info-g"></i>
+                                </div>
                                 <h3>Informations générales</h3>
-                                <p>Heures de jeu :</p>
+                                <div id="infos-g">
+                                    <p>Heures de jeu :</p>
+                                </div>
+                                <form method="post" id="formContainer" class="formEditInfoG">
+                                    <div class="body-formEditInfoG">
+                                        <div class="block-body-formEditInfoG">
+                                            <div class="item-formEditInfoG">
+                                                <label for="styledejeu">Votre style de jeu :</label>
+                                                <div class="checkbox-formEditInfoG">
+                                                    @foreach ($styleDeJeu as $style)
+                                                        <div class="checkbox-formEditInfoG-item">
+                                                            <input type="checkbox" id="{{ $style->label }}"
+                                                                   name="styledejeu[]" value="{{ $style->label }}">
+                                                            <label for="{{ $style->label }}">{{ $style->label }}</label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="item-formEditInfoG">
+                                                <label for="rolect">Vos rôles préférés en CT :</label>
+                                                <div class="checkbox-formEditInfoG">
+                                                    @foreach ($roleFavCt as $roleCt)
+                                                        <div class="checkbox-formEditInfoG-item">
+                                                            <input type="checkbox" id="{{ $roleCt->label }}"
+                                                                   name="roleCt[]" value="{{ $roleCt->label }}">
+                                                            <label
+                                                                for="{{ $roleCt->label }}">{{ $roleCt->label }}</label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="item-formEditInfoG">
+                                                <label for="rolet">Vos rôles préférés en T :</label>
+                                                <div class="checkbox-formEditInfoG">
+                                                    @foreach ($roleFavT as $roleT)
+                                                        <div class="checkbox-formEditInfoG-item">
+                                                            <input type="checkbox" id="{{ $roleT->label }}"
+                                                                   name="roleT[]" value="{{ $roleT->label }}">
+                                                            <label for="{{ $roleT->label }}">{{ $roleT->label }}</label>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="item-formEditInfoG">
+                                                <label for="maps">Vos maps préférées :</label>
+                                                <div class="checkbox-formEditInfoG">
+                                                    @foreach ($maps as $map)
+                                                        <div class="checkbox-formEditInfoG-item">
+                                                            <input type="checkbox" id="{{ $map->label }}"
+                                                                   name="maps[]" value="{{ $map->label }}">
+                                                            <div class="flex gap-4">
+                                                                <label for="{{ $map->label }}"><img
+                                                                        src="{{$map->logo}}"></label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <button>modifier</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="body-profile-csgo-info-faceit">
                                 <img class="banner-faceit"
@@ -92,10 +156,11 @@
                                             </div>
                                             <div class="faceit-items-infos-stats">
                                                 <div class="label-stats-faceit">
-                                                    <p><i class="fa-solid fa-head-side-virus"></i> HS</p>
+                                                    <p><i class="fa-solid fa-crosshairs"></i> HS</p>
                                                 </div>
                                                 <div class="value-stats-faceit">
-                                                    <p><?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?>%</p>
+                                                    <p><?= round($faceitStats->lifetime->{'Total Headshots %'} / $faceitStats->lifetime->Matches, 2); ?>
+                                                        %</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,16 +169,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="onglet-rl" id="onglet-rl">rocket league</div>
+                    <div class="onglet-rl" id="onglet-rl">
+                        <h2>Informations Rocket League</h2>
+                    </div>
                 </div>
             </div>
-            <div class="profile-histo">
+            <div class="block-profile-histo">
                 <h2>Historique</h2>
             </div>
         </div>
     </div>
     <script>
+        const toggleFormIcon = document.getElementById("toggleFormIcon");
+        const formContainer = document.getElementById("formContainer");
 
+        toggleFormIcon.addEventListener("click", function () {
+            if (formContainer.style.display === "block") {
+                formContainer.style.display = "none";
+                toggleFormIcon.classList.remove("fa-pen-to-square");
+                toggleFormIcon.classList.add("fa-xmark");
+                document.getElementById('infos-g').style.display = "block";
+            } else {
+                formContainer.style.display = "block";
+                toggleFormIcon.classList.remove("fa-xmark");
+                toggleFormIcon.classList.add("fa-pen-to-square");
+                document.getElementById('infos-g').style.display = "none";
+            }
+        });
         window.addEventListener("load", function () {
             if (window.location.href == "http://127.0.0.1:8000/profile#onglet-rl") {
                 window.location.replace(window.location.href.split("#onglet-rl")[0]);

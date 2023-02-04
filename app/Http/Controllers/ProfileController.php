@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\csgoRoleT;
 use App\Models\faceit_lvlModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use App\Http\Controllers\faceit_lvlController;
 
 class ProfileController extends Controller
 {
@@ -98,12 +98,24 @@ class ProfileController extends Controller
             $faceitData = "";
             $lvlImg = "";
         }
+        $styleDeJeu = new CsgoRoleStyleDeJeuController();
+        $styleDeJeu = $styleDeJeu->index();
+        $roleFavT = new CsgoRoleTController();
+        $roleFavT = $roleFavT->index();
+        $roleFavCt = new CsgoRoleCtController();
+        $roleFavCt = $roleFavCt->index();
+        $maps = new CsgoMapsController();
+        $maps = $maps->index();
         return view('profile.profile', [
             'user' => $user,
             "faceit" => $faceitData,
             'lvlImg' => $lvlImg,
             'errorNotGameCsgo' => $errorNotGameCsgo,
             'faceitStats' => $faceitStats,
+            'styleDeJeu' => $styleDeJeu,
+            'roleFavT' => $roleFavT,
+            'roleFavCt' => $roleFavCt,
+            'maps' => $maps,
         ]);
     }
 
