@@ -186,13 +186,13 @@
         toggleFormIcon.addEventListener("click", function () {
             if (formContainer.style.display === "block") {
                 formContainer.style.display = "none";
-                toggleFormIcon.classList.remove("fa-pen-to-square");
-                toggleFormIcon.classList.add("fa-xmark");
+                toggleFormIcon.classList.remove("fa-xmark");
+                toggleFormIcon.classList.add("fa-pen-to-square");
                 document.getElementById('infos-g').style.display = "block";
             } else {
                 formContainer.style.display = "block";
-                toggleFormIcon.classList.remove("fa-xmark");
-                toggleFormIcon.classList.add("fa-pen-to-square");
+                toggleFormIcon.classList.remove("fa-pen-to-square");
+                toggleFormIcon.classList.add("fa-xmark");
                 document.getElementById('infos-g').style.display = "none";
             }
         });
