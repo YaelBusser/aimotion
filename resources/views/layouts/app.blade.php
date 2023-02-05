@@ -20,14 +20,15 @@
 <body class="font-sans antialiased">
 @include('layouts.navigation')
 @if (isset($header))
-    <header class="shadow header" data-aos="fade-down" data-aos-duration="1000">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <x-nav-header-app></x-nav-header-app>
+    <header class="header" data-aos="fade-down" data-aos-duration="1000">
+        <!-- class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8" -->
+        <div class="name-header">
             {{ $header }}
         </div>
+        <x-nav-header-app></x-nav-header-app>
     </header>
 @endif
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" data-aos="fade-up"
+<div class="block-body" data-aos="fade-up"
      data-aos-duration="1000"
      style="margin-bottom: 200px; margin-top: 200px">
     {{ $slot }}

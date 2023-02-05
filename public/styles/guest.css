@@ -216,3 +216,14 @@ header h2 {
 .border-radius-reseaux {
     border-radius: 0 0 10px 10px;
 }
+@media (min-width: 1300px) {
+    .aside-infos {
+        width: 200px;
+    }
+}
+.name-header {
+    width: 500px;
+    display: flex;
+    justify-content: end;
+    padding: 1.5rem;
+}

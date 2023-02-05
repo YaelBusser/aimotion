@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\csgo_infos_g_maps_moins_jouees;
 use App\Models\csgo_infos_g_maps_plus_jouees;
 use App\Models\csgo_maps;
 use App\Models\CsgoInfoGMapsPlusJouees;
@@ -46,6 +47,20 @@ class ProfileController extends Controller
         } else {
             DB::table('csgo_infos_g_maps_plus_jouees')->where('id_user', $userId)->delete();
         }
+        if (array_key_exists('mapsMoinsJouees', $data)) {
+            $mapsMoinsJouees = $data['mapsMoinsJouees'];
+            DB::table('csgo_infos_g_maps_moins_jouees')->where('id_user', $userId)->delete();
+            foreach ($mapsMoinsJouees as $map) {
+                $mapId = DB::table('csgo_maps')->where('label', $map)->first();
+                csgo_infos_g_maps_moins_jouees::create([
+                    'id_user' => $userId,
+                    'id_map' => $mapId->id
+                ]);
+            }
+        } else {
+            DB::table('csgo_infos_g_maps_moins_jouees')->where('id_user', $userId)->delete();
+        }
+
         if (array_key_exists('rankmm', $data)) {
             $rankMm = $data['rankmm'];
             $ranksMm = DB::table('csgo_rankmm')->where('label', $rankMm)->first();
@@ -141,14 +156,28 @@ class ProfileController extends Controller
 
         $mapsPreferees = new CsgoMapsPlusJoueesController();
         $mapsPreferees = $mapsPreferees->index($user->id);
+
+        $mapsMoinsJouees = new CsgoMapsMoinsJoueesController();
+        $mapsMoinsJouees = $mapsMoinsJouees->index($user->id);
+
         $mapsController = new CsgoMapsController();
+
         $mapsUserFav = [];
         $labelMapsUserFav = [];
+
+        $mapsUserMoinsJouees = [];
+        $labelMapsUserMoinsJouees = [];
 
         foreach ($mapsPreferees as $mapPreferee) {
             $valueMap = $mapsController->search($mapPreferee->id_map);
             $mapsUserFav[] = $valueMap;
             $labelMapsUserFav[] = $valueMap->label;
+        }
+
+        foreach ($mapsMoinsJouees as $mapMoinsJouees) {
+            $valueMap = $mapsController->search($mapMoinsJouees->id_map);
+            $mapsUserMoinsJouees[] = $valueMap;
+            $labelMapsUserMoinsJouees[] = $valueMap->label;
         }
 
         $rankmmUser = new CsgoRankMmController();
@@ -167,6 +196,8 @@ class ProfileController extends Controller
             'rankmm' => $rankmm,
             'mapsPreferees' => $mapsUserFav,
             'labelMapsPreferees' => $labelMapsUserFav,
+            'mapsMoinsJouees' => $mapsUserMoinsJouees,
+            'labelMapsMoinsJouees' => $labelMapsUserMoinsJouees,
             'rankMmUser' => $rankmmUser,
         ]);
     }

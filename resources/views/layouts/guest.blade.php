@@ -21,9 +21,9 @@
 @include('layouts.navigation_guest')
 @if (isset($header))
     <header class="shadow header" data-aos="fade-down" data-aos-duration="1000">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <x-nav-header></x-nav-header>
+        <div class="name-header">
             {{ $header }}
+            <x-nav-header></x-nav-header>
         </div>
     </header>
 @endif

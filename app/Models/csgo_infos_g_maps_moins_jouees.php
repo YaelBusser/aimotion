@@ -9,4 +9,9 @@ class csgo_infos_g_maps_moins_jouees extends Model
 {
     use HasFactory;
     protected $table = 'csgo_infos_g_maps_moins_jouees';
+    protected $guarded = ['updated_at', 'created_at'];
+    protected $fillable = [
+        'id_user',
+        'id_map',
+    ];
 }

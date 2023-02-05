@@ -31,7 +31,10 @@
                                     <i id="toggleFormIcon" class="fa-solid fa-pen-to-square icon-edit-info-g"></i>
                                 </div>
                                 <h3>Informations générales</h3>
-                                <p>Ces informations sont facultatives, elles sont utiles pour remplir automatiquement les formulaires de recrutement.</p>
+                                <p class="infos-g-explication">Ces informations sont facultatives et privées, elles sont
+                                    utiles pour remplir
+                                    automatiquement les formulaires de recrutement au sein d'une équipe de
+                                    l'Aimotion.</p>
                                 <div id="infos-g">
                                     <div class="block-infos-g">
                                         <div class="item-formEditInfoG">
@@ -40,12 +43,23 @@
                                                 <img src="{{$rankMmUser->logo}}" class="logo-rankmm">
                                             </div>
                                         </div>
-                                        <div class="item-formEditInfoG">
-                                            <p>Maps les plus jouées</p>
-                                            <div class="block-logo-map-preferee">
-                                                @foreach($mapsPreferees as $mapsPreferee)
-                                                    <img src="{{$mapsPreferee->logo}}" class="logo-map-preferee">
-                                                @endforeach
+                                        <p>heures</p>
+                                        <div class="flex gap-3">
+                                            <div class="item-formEditInfoG w-1/2">
+                                                <p>Maps les plus jouées</p>
+                                                <div class="block-logo-map-preferee">
+                                                    @foreach($mapsPreferees as $mapsPreferee)
+                                                        <img src="{{$mapsPreferee->logo}}" class="logo-map-preferee">
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="item-formEditInfoG w-1/2">
+                                                <p>Maps les moins jouées</p>
+                                                <div class="block-logo-map-preferee">
+                                                    @foreach($mapsMoinsJouees as $mapMoinsJouees)
+                                                        <img src="{{$mapMoinsJouees->logo}}" class="logo-map-preferee">
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +139,8 @@
                                                     @foreach ($maps as $map)
                                                         <div class="checkbox-formEditInfoG-item">
                                                             <input type="checkbox" id="moins{{ $map->label }}"
-                                                                   name="mapsMoinsJouees[]" value="{{ $map->label }}">
+                                                                   name="mapsMoinsJouees[]" value="{{ $map->label }}"
+                                                                   @if(in_array($map->label, $labelMapsMoinsJouees)) checked @endif>
                                                             <div class="flex gap-4">
                                                                 <label for="moins{{ $map->label }}"><img
                                                                         src="{{$map->logo}}"></label>

@@ -75,11 +75,19 @@ select {
 
 .header {
     background-color: #232323;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 2;
+    padding: 1rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    display: flex;
+}
+
+.name-header {
+    width: 500px;
+    display: flex;
+    justify-content: end;
 }
 
 .block-navlinks {
@@ -136,6 +144,14 @@ header h2 {
     align-items: center;
     z-index: 1;
 }
+
+@media (min-width: 1300px) {
+    .aside-infos {
+        width: 200px;
+    }
+}
+
+
 
 .container-aside-infos {
     width: 100%;
@@ -496,6 +512,9 @@ header h2 {
     padding: 1rem;
     border-radius: 10px 10px 10px 10px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .body-profile-csgo-info-g h3 {
@@ -638,10 +657,11 @@ header h2 {
 .item-formEditInfoG select {
     appearance: none;
     color: #918f8f;
-    background-color: #232323!important;
+    background-color: #232323 !important;
     border: none;
     border-radius: 10px 10px 10px 10px;
 }
+
 .item-formEditInfoG select option {
     appearance: none;
     color: #918f8f;
@@ -681,18 +701,33 @@ header h2 {
     align-items: center;
     gap: 10px;
 }
-.logo-map-preferee{
+
+.logo-map-preferee {
     width: 50px;
 }
-.logo-rankmm{
+
+.logo-rankmm {
     width: 100px;
 }
-.block-logo-map-preferee{
+
+.block-logo-map-preferee {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
 }
-.block-infos-g{
+
+.block-infos-g {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.block-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.infos-g-explication{
+    color: #918f8f;
+    text-align: justify;
 }

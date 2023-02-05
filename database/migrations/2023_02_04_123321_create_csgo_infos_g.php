@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('csgo_infos_g_maps_plus_jouees', function (Blueprint $table) {
-            $table->id('id_csgo_infos_g_maps_plus_jouees');
+            $table->id('id');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_map');
         });
