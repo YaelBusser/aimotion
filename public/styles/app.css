@@ -249,7 +249,6 @@ header h2 {
 }
 
 .block-profile {
-    width: 1000px;
     min-height: 175px;
     background-color: #232323;
     margin-top: 0;
@@ -364,11 +363,12 @@ header h2 {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    width: 70%;
 }
 
 .block-profile-info-histo {
     display: flex;
-    flex-direction: column;
+    width: 100%;
     gap: 10px;
 }
 
@@ -421,6 +421,8 @@ header h2 {
     border-radius: 0 10px 10px 10px;
     display: flex;
     flex-direction: column;
+    width: 60%;
+    position: relative;
 }
 
 .profile-infos h2 {
@@ -428,7 +430,7 @@ header h2 {
 }
 
 .block-profile-histo {
-    width: 100%;
+    width: 40%;
     min-height: 175px;
     background-color: #232323;
     margin-top: 0;
@@ -506,8 +508,7 @@ header h2 {
 }
 
 .body-profile-csgo-info-g {
-    width: 600px;
-    max-width: 600px;
+    width: 60%;
     background-color: #1c1b1b;
     padding: 1rem;
     border-radius: 10px 10px 10px 10px;
@@ -522,8 +523,8 @@ header h2 {
 }
 
 .body-profile-csgo-info-faceit {
-    width: 350px;
-    max-width: 350px;
+    width: 40%;
+    max-width: 40%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -612,6 +613,7 @@ header h2 {
 .block-icon-edit-info-g {
     display: flex;
     justify-content: end;
+    margin-bottom: 10px;
 }
 
 .icon-edit-info-g {
@@ -639,10 +641,11 @@ header h2 {
 }
 
 .block-body-formEditInfoG {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 }
 
 .item-formEditInfoG {
@@ -703,7 +706,7 @@ header h2 {
 }
 
 .logo-map-preferee {
-    width: 50px;
+    width: 30px;
 }
 
 .logo-rankmm {
@@ -730,4 +733,35 @@ header h2 {
 .infos-g-explication{
     color: #918f8f;
     text-align: justify;
+}
+.block-btn-show-infos-pv{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.block-btn-show-infos-pv button{
+    color: #918f8f;
+    background-color: #3b3b3b;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+#formInfoPv{
+    display: none;
+}
+#formContainer{
+    display: none;
+}
+#infos-g{
+    display: none;
+}
+#body-infos-g{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.input-heures-jeu{
+    background-color: #232323!important;
+    color: #918f8f!important;
+    border-radius: 10px 10px 10px 10px!important;
+    border: none;
 }

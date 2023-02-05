@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Http\Controllers\UserController;
 
 class ProfileController extends Controller
 {
@@ -66,11 +67,15 @@ class ProfileController extends Controller
             $ranksMm = DB::table('csgo_rankmm')->where('label', $rankMm)->first();
             DB::table('users')->where('id', $userId)->update(['rankMM' => $ranksMm->id_csgo_rankmm]);
         }
+        if (array_key_exists('heurescsgo', $data)) {
+            $heurescsgo = $data['heurescsgo'];
+            DB::table('users')->where('id', $userId)->update(['heures_csgo' => $heurescsgo]);
+        }
         // Redirection vers la page de profil
-        return Redirect::route('profile.profile');
+        return Redirect::route('profile.profile', ['name' => Auth::user()->name]);
     }
 
-    public function main(Request $request): View
+    public function main($name): View
     {
         $api_key = "e84f1841-2739-4758-8508-bb8ae980e8e5";
         $client = new \GuzzleHttp\Client();
@@ -78,13 +83,18 @@ class ProfileController extends Controller
             'Authorization' => 'Bearer ' . $api_key,
             'Accept' => 'application/json',
         ];
-        $user = $request->user();
+        $userPublic = User::where('name', $name)->first();
+        $user = User::where('name', Auth::user()->name)->first();
+        if (!$userPublic) {
+            return view('dashboard', [
+                'user' => $userPublic,])->with('error', "L'utilisateur n'a pas été trouvé.");
+        }
         $errorNotGameCsgo = "";
         $faceitData = "";
         $faceitStats = "";
         $lvlImg = "";
-        if (!empty($user->pseudo_faceit)) {
-            $response = $client->request("GET", "https://open.faceit.com/data/v4/players?nickname=" . $user->pseudo_faceit . "", ["headers" => $headers, 'verify' => false]);
+        if (!empty($userPublic->pseudo_faceit)) {
+            $response = $client->request("GET", "https://open.faceit.com/data/v4/players?nickname=" . $userPublic->pseudo_faceit . "", ["headers" => $headers, 'verify' => false]);
             $faceitData = json_decode($response->getBody()->getContents());
             if (isset($faceitData->games->csgo)) {
                 $responseStats = $client->request("GET", "https://open.faceit.com/data/v4/players/" . $faceitData->player_id . "/stats/csgo", ["headers" => $headers, 'verify' => false]);
@@ -155,10 +165,10 @@ class ProfileController extends Controller
         $rankmm = $rankmm->index();
 
         $mapsPreferees = new CsgoMapsPlusJoueesController();
-        $mapsPreferees = $mapsPreferees->index($user->id);
+        $mapsPreferees = $mapsPreferees->index($userPublic->id);
 
         $mapsMoinsJouees = new CsgoMapsMoinsJoueesController();
-        $mapsMoinsJouees = $mapsMoinsJouees->index($user->id);
+        $mapsMoinsJouees = $mapsMoinsJouees->index($userPublic->id);
 
         $mapsController = new CsgoMapsController();
 
@@ -181,10 +191,10 @@ class ProfileController extends Controller
         }
 
         $rankmmUser = new CsgoRankMmController();
-        $rankmmUser = $rankmmUser->fetchById($user->rankMM);
-
+        $rankmmUser = $rankmmUser->fetchById($userPublic->rankMM);
         return view('profile.profile', [
             'user' => $user,
+            'userPublic' => $userPublic,
             "faceit" => $faceitData,
             'lvlImg' => $lvlImg,
             'errorNotGameCsgo' => $errorNotGameCsgo,

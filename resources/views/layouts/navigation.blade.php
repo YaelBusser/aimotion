@@ -6,10 +6,10 @@
         <div class="block-navlinks">
             <div class="navlinks">
                 <div class="navlinks-profile">
-                    <a href="/profile"><img src="{{ Auth::user()->avatar }}"></a>
-                    <x-nav-link :href="route('profile.profile')">
-                        <div>{{ Auth::user()->name }}</div>
-                    </x-nav-link>
+                    <a href="/profile/{{ Auth::user()->name }}"><img src="../{{ Auth::user()->avatar }}"></a>
+                    <a href="/profile/{{ Auth::user()->name }}">
+                        <div>{{Auth::user()->name }}</div>
+                    </a>
                 </div>
                 <hr class="hr-navbar">
                 <div class="navlinks-textLogo">
