@@ -7,9 +7,19 @@
             <div class="navlinks">
                 <div class="navlinks-profile">
                     <a href="/profile/{{ Auth::user()->name }}"><img src="../{{ Auth::user()->avatar }}"></a>
-                    <a href="/profile/{{ Auth::user()->name }}">
-                        <div>{{Auth::user()->name }}</div>
-                    </a>
+                    <div class="user-dropdown">
+                        <div class="user-name">{{Auth::user()->name }}<i class="fas fa-caret-down"></i></div>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/profile/{{ Auth::user()->name }}">Profil</a>
+                            </li>
+                            <li>
+                                <a href="/logout">
+                                    se déconnecter
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <hr class="hr-navbar">
                 <div class="navlinks-textLogo">
@@ -53,3 +63,20 @@
         </div>
     </div>
 </nav>
+<script>
+    const userDropdown = document.querySelector('.user-dropdown');
+    const userName = document.querySelector('.user-name');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    let caretDown = userName.getElementsByTagName("i")[0];
+    userName.addEventListener('click', function () {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        if (dropdownMenu.style.display === 'block') {
+            caretDown.classList.remove("fa-caret-down");
+            caretDown.classList.add("fa-caret-up");
+        } else {
+            caretDown.classList.remove("fa-caret-up");
+            caretDown.classList.add("fa-caret-down");
+        }
+
+    });
+</script>

@@ -93,7 +93,7 @@ select {
 .block-navlinks {
     display: flex;
     justify-content: center;
-
+    position: relative;
 }
 
 .flex {
@@ -764,4 +764,31 @@ header h2 {
     color: #918f8f!important;
     border-radius: 10px 10px 10px 10px!important;
     border: none;
+}
+.user-dropdown {
+    width: 100%;
+    text-align: center;
+}
+
+.user-dropdown .user-name {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 20px;
+    right: 0;
+    z-index: 1;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #1c1b1b;
+    padding: 1rem;
+    font-size: 15px;
+    width: 150px;
+    max-width: 150px;
+    text-align: start;
 }
