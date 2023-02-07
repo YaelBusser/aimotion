@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile-edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile-edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/profile/infoG/csgo', [ProfileController::class, 'editInfoCsgo'])->name('profile.infog.csgo');
+    Route::post('/profile/infoPublic/csgo', [ProfileController::class, 'editInfoPublicCsgo'])->name('profile.infopublic.csgo');
 });
 
 require __DIR__ . '/auth.php';

@@ -27,172 +27,36 @@
                 <div class="profile-infos">
                     <h2>Informations</h2>
                     <div class="onglet-csgo" id="onglet-csgo">
-                        <div class="block-btn-show-infos-pv">
-                            @if ($user->name == $userPublic->name)
-                                <button id="toggleInfoPv">Informations privées</button>
-                            @endif
-                        </div>
                         <div class="body-profile-csgo">
                             <div class="body-profile-csgo-info-g">
+                                <div class="block-icon-edit-info-g">
+                                    @if ($user->name == $userPublic->name)
+                                        <i id="toggleInfoPublic"
+                                           class="fa-solid fa-pen-to-square icon-edit-info-g"></i>
+                                    @endif
+                                </div>
                                 <div class="infos-public" id="infos-public">
-                                    <p>Informations publiques</p>
-                                </div>
-                                <div id="infos-g">
-                                    <div class="block-icon-edit-info-g">
-                                        @if ($user->name == $userPublic->name)
-                                            <i id="toggleFormEditInfoPv"
-                                               class="fa-solid fa-pen-to-square icon-edit-info-g"></i>
-                                        @endif
-                                    </div>
-                                    <div id="body-infos-g">
-                                        <p class="infos-g-explication">Ces informations sont facultatives et privées,
-                                            elles sont utiles pour remplir automatiquement les formulaires de
-                                            recrutement au sein d'une équipe de l'Aimotion.</p>
+                                    <div id="body-infos-public">
                                         <div class="block-infos-g" id="block-infos-g">
-                                            <div class="flex gap-3">
-                                                <div class="item-formEditInfoG w-1/2">
-                                                    <p>Rank MM</p>
-                                                    <div class="block-logo-map-preferee">
-                                                        @if(isset($rankMmUser))
-                                                            <img src="{{$rankMmUser->logo}}" class="logo-rankmm">
+                                            <form method="post" action="/profile/infoPublic/csgo" class="flex-column gap-3 mt-6">
+                                                <div class="item-formEditInfoG">
+                                                    <h3>Description</h3>
+                                                    <p id="csgo-public-description">
+                                                        @if (!empty($userPublic->csgo_description))
+                                                            {{$userPublic->csgo_description}}
                                                         @endif
+                                                    </p>
+                                                    <div class="formEditInfoPublic" id="editCsgoDescription">
+                                                        @csrf
+                                                        <textarea name="csgo-description" id="csgo-description"
+                                                                  class="textarea-form-public">@if(isset($user->csgo_description)){{$user->csgo_description}}@endif</textarea>
                                                     </div>
                                                 </div>
-                                                <div class="item-formEditInfoG w-1/2">
-                                                    <p>Heures</p>
-                                                    <div class="block-logo-map-preferee">
-                                                        @if(isset($user->heures_csgo))
-                                                            {{$user->heures_csgo}}
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex gap-3">
-                                                <div class="item-formEditInfoG w-1/2">
-                                                    <p>Maps les plus jouées</p>
-                                                    <div class="block-logo-map-preferee">
-                                                        @foreach($mapsPreferees as $mapsPreferee)
-                                                            <img src="{{$mapsPreferee->logo}}"
-                                                                 class="logo-map-preferee">
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                                <div class="item-formEditInfoG w-1/2">
-                                                    <p>Maps les moins jouées</p>
-                                                    <div class="block-logo-map-preferee">
-                                                        @foreach($mapsMoinsJouees as $mapMoinsJouees)
-                                                            <img src="{{$mapMoinsJouees->logo}}"
-                                                                 class="logo-map-preferee">
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <button class="btn-csgo-public" id="btn-csgo-public">modifier</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <form method="post" action="/profile/infoG/csgo" id="formEditInfoPv"
-                                      class="formEditInfoG">
-                                    @csrf
-                                    <div class="body-formEditInfoG">
-                                        <div class="block-body-formEditInfoG">
-                                            <div class="item-formEditInfoG">
-                                                <label for="styledejeu">Votre rank MM</label>
-                                                <select name="rankmm" id="styledejeu">
-                                                    @foreach ($rankmm as $rank)
-                                                        <option
-                                                            value="{{ $rank->label }}"
-                                                        @if(isset($rankMmUser))
-                                                            {{ $rank->label == $rankMmUser->label ? 'selected' : '' }}
-                                                            @endif
-                                                        >
-                                                            {{$rank->label }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="heures">Votre nombre d'heures</label>
-                                                <input type="number" name="heurescsgo" id="heures"
-                                                       placeholder="Votre nombre d'heures de jeu"
-                                                       class="input-heures-jeu"
-                                                       value="@if(isset($user->heures_csgo)){{$user->heures_csgo}}@endif">
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="styledejeu">Votre style de jeu</label>
-                                                <div class="checkbox-formEditInfoG">
-                                                    @foreach ($styleDeJeu as $style)
-                                                        <div class="checkbox-formEditInfoG-item">
-                                                            <input type="checkbox" id="{{ $style->label }}"
-                                                                   name="styledejeu[]" value="{{ $style->label }}">
-                                                            <label
-                                                                for="{{ $style->label }}">{{ $style->label }}</label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="rolect">Vos rôles préférés en CT</label>
-                                                <div class="checkbox-formEditInfoG">
-                                                    @foreach ($roleFavCt as $roleCt)
-                                                        <div class="checkbox-formEditInfoG-item">
-                                                            <input type="checkbox" id="{{ $roleCt->label }}"
-                                                                   name="roleCt[]" value="{{ $roleCt->label }}">
-                                                            <label
-                                                                for="{{ $roleCt->label }}">{{ $roleCt->label }}</label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="rolet">Vos rôles préférés en T</label>
-                                                <div class="checkbox-formEditInfoG">
-                                                    @foreach ($roleFavT as $roleT)
-                                                        <div class="checkbox-formEditInfoG-item">
-                                                            <input type="checkbox" id="{{ $roleT->label }}"
-                                                                   name="roleT[]" value="{{ $roleT->label }}">
-                                                            <label
-                                                                for="{{ $roleT->label }}">{{ $roleT->label }}</label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="maps">Vos maps les plus jouées</label>
-                                                <div class="checkbox-formEditInfoG">
-                                                    @foreach ($maps as $map)
-                                                        <div class="checkbox-formEditInfoG-item">
-                                                            <input type="checkbox" id="{{ $map->label }}"
-                                                                   name="mapsPlusJouees[]" value="{{ $map->label }}"
-                                                                   @if(in_array($map->label, $labelMapsPreferees)) checked @endif>
-                                                            <div class="flex gap-4">
-                                                                <label for="{{ $map->label }}"><img
-                                                                        src="{{$map->logo}}"></label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="item-formEditInfoG">
-                                                <label for="maps">Vos maps les moins jouées</label>
-                                                <div class="checkbox-formEditInfoG">
-                                                    @foreach ($maps as $map)
-                                                        <div class="checkbox-formEditInfoG-item">
-                                                            <input type="checkbox" id="moins{{ $map->label }}"
-                                                                   name="mapsMoinsJouees[]"
-                                                                   value="{{ $map->label }}"
-                                                                   @if(in_array($map->label, $labelMapsMoinsJouees)) checked @endif>
-                                                            <div class="flex gap-4">
-                                                                <label for="moins{{ $map->label }}"><img
-                                                                        src="{{$map->logo}}"></label>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <button>modifier</button>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                             <div class="body-profile-csgo-info-faceit">
                                 <img class="banner-faceit"
@@ -299,40 +163,27 @@
             document.querySelector("#onglet-csgo").style.display = "none";
             document.querySelector("#onglet-rl").style.display = "block";
         });
-        const toggleInfoPv = document.getElementById("toggleInfoPv");
-        const infosg = document.getElementById("infos-g");
-        const infospublic = document.getElementById("infos-public");
-        const bodyinfosg = document.getElementById("body-infos-g");
-        const toggleFormEditInfoPv = document.getElementById("toggleFormEditInfoPv");
-        const formEditInfoPv = document.getElementById("formEditInfoPv");
-        toggleInfoPv.addEventListener("click", function () {
-            if (infosg.style.display === "block") {
-                infosg.style.display = "none";
-                infospublic.style.display = "block";
-                bodyinfosg.style.display = "flex";
-                formEditInfoPv.style.display = "none";
-                toggleFormEditInfoPv.classList.remove("fa-xmark");
-                toggleFormEditInfoPv.classList.add("fa-pen-to-square");
-                toggleInfoPv.style.backgroundColor = "#3b3b3b";
+
+        const toggleInfoPublic = document.getElementById("toggleInfoPublic");
+        const csgoPublicDescription = document.getElementById("csgo-public-description");
+        const editCsgoDescription = document.getElementById("editCsgoDescription");
+        const btnCsgoPublic = document.getElementById("btn-csgo-public");
+        toggleInfoPublic.addEventListener("click", function () {
+            if (editCsgoDescription.style.display === "block") {
+                editCsgoDescription.style.display = "none";
+                csgoPublicDescription.style.display = "block";
+                btnCsgoPublic.style.display = "none";
+                toggleInfoPublic.classList.remove("fa-xmark");
+                toggleInfoPublic.classList.add("fa-pen-to-square");
             } else {
-                infosg.style.display = "block";
-                infospublic.style.display = "none";
-                toggleInfoPv.style.backgroundColor = "rgb(25, 25, 25)";
+                editCsgoDescription.style.display = "block";
+                csgoPublicDescription.style.display = "none";
+                btnCsgoPublic.style.display = "block";
+                toggleInfoPublic.classList.remove("fa-pen-to-square");
+                toggleInfoPublic.classList.add("fa-xmark");
             }
         });
-        toggleFormEditInfoPv.addEventListener("click", function () {
-            if (formEditInfoPv.style.display === "block") {
-                formEditInfoPv.style.display = "none";
-                toggleFormEditInfoPv.classList.remove("fa-xmark");
-                toggleFormEditInfoPv.classList.add("fa-pen-to-square");
-                bodyinfosg.style.display = "flex";
-            } else {
-                formEditInfoPv.style.display = "block";
-                toggleFormEditInfoPv.classList.remove("fa-pen-to-square");
-                toggleFormEditInfoPv.classList.add("fa-xmark");
-                bodyinfosg.style.display = "none";
-            }
-        });
+
 
         window.addEventListener("load", function () {
             if (window.location.href === "http://127.0.0.1:8000/profile/{{$userPublic->name}}#onglet-rl") {

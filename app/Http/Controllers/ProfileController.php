@@ -29,7 +29,17 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-
+    public function editInfoPublicCsgo(Request $request)
+    {
+        $data = $request->all();
+        $userId = Auth::user()->id;
+        if (array_key_exists('csgo-description', $data)) {
+            $csgo_description = $data['csgo-description'];
+            DB::table('users')->where('id', $userId)->update(['csgo_description' => $csgo_description]);
+        }
+        // Redirection vers la page de profil
+        return Redirect::route('profile.profile', ['name' => Auth::user()->name]);
+    }
     public function editInfoCsgo(Request $request)
     {
         // Récupération des données du formulaire
