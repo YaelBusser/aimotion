@@ -18,7 +18,6 @@ use \App\Http\Controllers\FaceitController;
 */
 
 
-Route::get('/profile/{name}', [ProfileController::class, 'main'])->name('profile.profile');
 // Route accessible uniquement pour les utilisateurs non connectés
 Route::middleware('guest')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/{name}', [ProfileController::class, 'main'])->name('profile.profile');
     Route::get('/profile-edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile-edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile-edit', [ProfileController::class, 'destroy'])->name('profile.destroy');

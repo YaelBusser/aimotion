@@ -50,9 +50,11 @@
                                                     <div class="formEditInfoPublic editCsgoForm">
                                                         @csrf
                                                         <textarea name="csgo-description" id="csgo-description"
-                                                                  class="textarea-form-public">@if(isset($user->csgo_description))
-                                                                {{$user->csgo_description}}
-                                                            @endif</textarea>
+                                                                  class="textarea-form-public">@if(isset($user->csgo_description)){{$user->csgo_description}}@endif</textarea>
+                                                        @if ($errors->has('csgo-description'))
+                                                            <x-input-error :messages="$errors->get('csgo-description')"
+                                                                           class="mt-2"/>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="item-formEditInfoG">
@@ -69,7 +71,8 @@
                                                                    class="input-form-public"
                                                                    value="@if(isset($user->csgo_casque)){{$user->csgo_casque}}@endif">
                                                             @if ($errors->has('csgo-casque'))
-                                                                <x-input-error :messages="$errors->get('csgo-casque')" class="mt-2 test"/>
+                                                                <x-input-error :messages="$errors->get('csgo-casque')"
+                                                                               class="mt-2"/>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -85,6 +88,11 @@
                                                                 <input type="text" name="csgo-clavier"
                                                                        class="input-form-public"
                                                                        value="@if(isset($user->csgo_clavier)){{$user->csgo_clavier}}@endif">
+                                                                @if ($errors->has('csgo-clavier'))
+                                                                    <x-input-error
+                                                                        :messages="$errors->get('csgo-clavier')"
+                                                                        class="mt-2"/>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="item-csgo-setup w-1/2">
@@ -98,6 +106,11 @@
                                                                 <input type="text" name="csgo-souris"
                                                                        class="input-form-public"
                                                                        value="@if(isset($user->csgo_souris)){{$user->csgo_souris}}@endif">
+                                                                @if ($errors->has('csgo-souris'))
+                                                                    <x-input-error
+                                                                        :messages="$errors->get('csgo-souris')"
+                                                                        class="mt-2"/>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,9 +123,14 @@
                                                             </p>
                                                             <div class="formEditInfoPublic editCsgoForm">
                                                                 @csrf
-                                                                <input type="text" name="csgo-dpi"
+                                                                <input type="number" name="csgo-dpi"
                                                                        class="input-form-public"
                                                                        value="@if(isset($user->csgo_DPI)){{$user->csgo_DPI}}@endif">
+                                                                @if ($errors->has('csgo-dpi'))
+                                                                    <x-input-error
+                                                                        :messages="$errors->get('csgo-dpi')"
+                                                                        class="mt-2"/>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="item-csgo-setup w-1/2">
@@ -123,9 +141,14 @@
                                                             </p>
                                                             <div class="formEditInfoPublic editCsgoForm">
                                                                 @csrf
-                                                                <input type="text" name="csgo-sensi"
+                                                                <input type="number" step="0.01" name="csgo-sensi"
                                                                        class="input-form-public"
                                                                        value="@if(isset($user->csgo_sensi)){{$user->csgo_sensi}}@endif">
+                                                                @if ($errors->has('csgo-sensi'))
+                                                                    <x-input-error
+                                                                        :messages="$errors->get('csgo-sensi')"
+                                                                        class="mt-2"/>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -140,6 +163,10 @@
                                                             <input type="text" name="csgo-ecran"
                                                                    class="input-form-public"
                                                                    value="@if(isset($user->csgo_ecran)){{$user->csgo_ecran}}@endif">
+                                                            @if ($errors->has('csgo-ecran'))
+                                                                <x-input-error :messages="$errors->get('csgo-ecran')"
+                                                                               class="mt-2"/>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -241,24 +268,37 @@
         </div>
     </div>
     <script>
+        const toggleInfoPublic = document.getElementById("toggleInfoPublic");
+        const csgoPublicInfo = document.getElementsByClassName("csgo-public-info");
+        const editCsgoForm = document.getElementsByClassName("editCsgoForm");
+        const btnCsgoPublic = document.getElementById("btn-csgo-public");
+        document.addEventListener("DOMContentLoaded", function () {
+            var targetDiv = document.querySelector(".input-error");
+            if (targetDiv) {
+                console.log("ok");
+                for (let i = 0; i < csgoPublicInfo.length; i++) {
+                    csgoPublicInfo[i].style.display = "none";
+                }
+                for (let i = 0; i < editCsgoForm.length; i++) {
+                    editCsgoForm[i].style.display = "block";
+                }
+                toggleInfoPublic.classList.remove("fa-pen-to-square");
+                toggleInfoPublic.classList.add("fa-xmark");
+                btnCsgoPublic.style.display = "block";
+            }
+        });
         document.getElementById("csgo").addEventListener("click", function () {
             document.querySelector("#csgo").style.backgroundColor = "#232323";
             document.querySelector("#rocketleague").style.backgroundColor = "#3b3b3b";
             document.querySelector("#onglet-csgo").style.display = "block";
             document.querySelector("#onglet-rl").style.display = "none";
         });
-
         document.getElementById("rocketleague").addEventListener("click", function () {
             document.querySelector("#csgo").style.backgroundColor = "#3b3b3b";
             document.querySelector("#rocketleague").style.backgroundColor = "#232323";
             document.querySelector("#onglet-csgo").style.display = "none";
             document.querySelector("#onglet-rl").style.display = "block";
         });
-
-        const toggleInfoPublic = document.getElementById("toggleInfoPublic");
-        const csgoPublicInfo = document.getElementsByClassName("csgo-public-info");
-        const editCsgoForm = document.getElementsByClassName("editCsgoForm");
-        const btnCsgoPublic = document.getElementById("btn-csgo-public");
         toggleInfoPublic.addEventListener("click", function () {
             if (toggleInfoPublic.classList.contains('fa-xmark')) {
                 for (let i = 0; i < csgoPublicInfo.length; i++) {

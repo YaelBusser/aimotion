@@ -30,12 +30,19 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
     public function editInfoPublicCsgo(Request $request)
     {
         $data = $request->all();
         $userId = Auth::user()->id;
         $validator = Validator::make($data, [
-            'csgo-casque' => ['max:16'],
+            'csgo-description' => ['nullable', 'string', 'max:255'],
+            'csgo-casque' => ['nullable', 'string', 'max:30'],
+            'csgo-clavier' => ['nullable', 'string', 'max:30'],
+            'csgo-souris' => ['nullable', 'string', 'max:30'],
+            'csgo-dpi' => ['nullable', 'numeric', 'max:36000'],
+            'csgo-sensi' => ['nullable', 'numeric', 'max:200'],
+            'csgo-ecran' => ['nullable', 'string', 'max:30'],
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -44,9 +51,34 @@ class ProfileController extends Controller
             $csgo_description = $data['csgo-description'];
             DB::table('users')->where('id', $userId)->update(['csgo_description' => $csgo_description]);
         }
+        if (array_key_exists('csgo-casque', $data)) {
+            $csgo_casque = $data['csgo-casque'];
+            DB::table('users')->where('id', $userId)->update(['csgo_casque' => $csgo_casque]);
+        }
+        if (array_key_exists('csgo-clavier', $data)) {
+            $csgo_clavier = $data['csgo-clavier'];
+            DB::table('users')->where('id', $userId)->update(['csgo_clavier' => $csgo_clavier]);
+        }
+        if (array_key_exists('csgo-souris', $data)) {
+            $csgo_souris = $data['csgo-souris'];
+            DB::table('users')->where('id', $userId)->update(['csgo_souris' => $csgo_souris]);
+        }
+        if (array_key_exists('csgo-dpi', $data)) {
+            $csgo_DPI = $data['csgo-dpi'];
+            DB::table('users')->where('id', $userId)->update(['csgo_DPI' => $csgo_DPI]);
+        }
+        if (array_key_exists('csgo-sensi', $data)) {
+            $csgo_sensi = $data['csgo-sensi'];
+            DB::table('users')->where('id', $userId)->update(['csgo_sensi' => $csgo_sensi]);
+        }
+        if (array_key_exists('csgo-ecran', $data)) {
+            $csgo_ecran = $data['csgo-ecran'];
+            DB::table('users')->where('id', $userId)->update(['csgo_ecran' => $csgo_ecran]);
+        }
         // Redirection vers la page de profil
         return Redirect::route('profile.profile', ['name' => Auth::user()->name]);
     }
+
     public function editInfoCsgo(Request $request)
     {
         // Récupération des données du formulaire
@@ -101,7 +133,9 @@ class ProfileController extends Controller
             'Accept' => 'application/json',
         ];
         $userPublic = User::where('name', $name)->first();
-        $user = User::where('name', Auth::user()->name)->first();
+        if (isset(Auth::user()->name)) {
+            $user = User::where('name', Auth::user()->name)->first();
+        }
         if (!$userPublic) {
             return view('dashboard', [
                 'user' => $userPublic,])->with('error', "L'utilisateur n'a pas été trouvé.");
