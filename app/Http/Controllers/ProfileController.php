@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -33,6 +34,12 @@ class ProfileController extends Controller
     {
         $data = $request->all();
         $userId = Auth::user()->id;
+        $validator = Validator::make($data, [
+            'csgo-casque' => ['max:16'],
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         if (array_key_exists('csgo-description', $data)) {
             $csgo_description = $data['csgo-description'];
             DB::table('users')->where('id', $userId)->update(['csgo_description' => $csgo_description]);

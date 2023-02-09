@@ -783,6 +783,12 @@ header h2 {
     height: 100px;
     width: 100%;
 }
+.input-form-public{
+    background-color: #232323!important;
+    color: #918f8f!important;
+    border-radius: 10px 10px 10px 10px!important;
+    border: none;
+}
 .user-dropdown {
     width: 100%;
     text-align: center;
@@ -816,6 +822,10 @@ header h2 {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    position: relative;
+}
+.formEditInfoPublic input{
+    width: 100%;
 }
 .btn-csgo-public{
     margin-left: auto;
@@ -824,4 +834,15 @@ header h2 {
     display: none;
     color: #cbcaca;
     border-radius: 10px 10px 10px 10px;
+}
+.item-csgo-setup{
+    background-color: #1c1b1b;
+    padding: 1rem;
+    border-radius: 10px 10px 10px 10px;
+}
+.item-csgo-setup h4{
+    font-weight: bold;
+}
+.csgo-public-info{
+    color: #8d8d8d;
 }

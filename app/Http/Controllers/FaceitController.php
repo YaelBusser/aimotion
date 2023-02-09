@@ -19,6 +19,6 @@ class FaceitController extends Controller
         $user = auth()->user();
         $user->pseudo_faceit = $userFaceit->getNickname();
         $user->save();
-        return redirect()->to('/profile');
+        return redirect()->to('/profile/'.$user->name);
     }
 }

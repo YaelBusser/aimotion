@@ -28,7 +28,13 @@ class User extends Authenticatable
         'avatar',
         'pseudo_faceit',
         'heures_csgo',
-        'csgo_description'
+        'csgo_description',
+        'csgo_casque',
+        'csgo_clavier',
+        'csgo_souris',
+        'csgo_DPI',
+        'csgo_sensi',
+        'csgo_ecran',
     ];
     /**
      * The attributes that should be hidden for serialization.
