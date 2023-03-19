@@ -28,6 +28,12 @@
                         {{ __('Accueil') }}
                     </x-nav-link>
                 </div>
+                <div class="navlinks-textLogo">
+                    <a href="/"><i class="fa-solid fa-shield"></i></a>
+                    <x-nav-link href="/home" :active="request()->routeIs('home')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
+                </div>
             </div>
         </div>
         <!-- Hamburger -->

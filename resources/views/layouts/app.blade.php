@@ -35,62 +35,8 @@
     {{ $slot }}
 </div>
 
-<div class="aside-infos" data-aos="fade-left" data-aos-duration="1000">
-    <div class="container-aside-infos">
-        <div class="block-aside-info">
-            <h3>Serveurs<i class="fa-solid fa-square-caret-down" id="dropdown-button-serveurs"></i></h3>
-            <div class="block-aside-infos" id="dropdown-content-serveurs">
-                <p>Re take</p>
-                <p>Stuffs</p>
-                <p>Mix</p>
-            </div>
-        </div>
-        <div class="block-aside-info">
-            <h3>Tournois<i class="fa-solid fa-square-caret-down" id="dropdown-button-tournois"></i></h3>
-            <div class="block-aside-infos" id="dropdown-content-tournois">
-                <p>Wingman #1</p>
-                <p>Aimotion League #3</p>
-                <p>Wingman #2</p>
-            </div>
-        </div>
-        <div class="block-aside-info">
-            <h3>Réseaux<i class="fa-solid fa-square-caret-down" id="dropdown-button-reseaux"></i></h3>
-            <div id="dropdown-content-reseaux">
-                <p><i class="fa-brands fa-discord"></i></p>
-                <p><i class="fa-brands fa-instagram"></i></p>
-                <p><i class="fa-brands fa-twitter"></i></p>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
     AOS.init();
-</script>
-<script>
-    $(document).ready(function () {
-        $("#dropdown-button-serveurs").click(function () {
-            $("#dropdown-content-serveurs").animate({
-                opacity: 'toggle',
-                height: 'toggle',
-                fontSize: 'toggle',
-            }, 500);
-        });
-        $("#dropdown-button-tournois").click(function () {
-            $("#dropdown-content-tournois").animate({
-                opacity: 'toggle',
-                height: 'toggle',
-                fontSize: 'toggle',
-            }, 500);
-        });
-        $("#dropdown-button-reseaux").click(function () {
-            $("#dropdown-content-reseaux").animate({
-                opacity: 'toggle',
-                height: 'toggle',
-                fontSize: 'toggle',
-            }, 500);
-            $("#dropdown-button-reseaux").toggleClass("border-radius-reseaux");
-        });
-    });
 </script>
 </body>
 </html>

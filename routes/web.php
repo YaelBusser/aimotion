@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConnectedController;
 use \App\Http\Controllers\HomeController;
@@ -30,6 +31,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    $user = Auth::user();
+    /*if ($user->isAdmin == 1) {
+        Route::get('/admin', [ProfileController::class, 'main'])->name('profile.profile');
+    }*/
     Route::get('/profile/{name}', [ProfileController::class, 'main'])->name('profile.profile');
     Route::get('/profile-edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile-edit', [ProfileController::class, 'update'])->name('profile.update');
